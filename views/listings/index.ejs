@@ -1,22 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>staynest</title>
-</head>
-<body>
+<% layout ("/layouts/boilerplate") -%>
+
     <h3> All listingss </h3>
 
-    <form method = "GET" action="/listings/new">
+   <!-- <form method = "GET" action="/listings/new">
     <button>Create New Listings</button>
-    </form>
-
-<ul>
-    // anchor tag to create link of each element of list
+    </form> -->
+    <div class ="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
 <% for(let listing of allListings){%>
-    <li><a href="/listings/<%= listing._id %>"><%= listing.title %></a> </li>
-<%}%>
-</ul>
-</body>
-</html>
+    <a href="/listings/<%= listing._id %>" class = "listing-link">
+<div class="card col" >
+    
+<img src="<%= listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem"/>
+<div class="card-img-overlay"></div>
+<div class="card-body">
+    <p class="card-text">
+       <b> <%= listing.title %> <br/></b>
+        
+        &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
+        
+
+    </p>
+  </div>
+</div>
+<% }%>
+    </div>
+
+
+
+
+
+
+

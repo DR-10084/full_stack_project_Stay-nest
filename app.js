@@ -6,8 +6,10 @@ const mongoose= require ("mongoose");
 const Listing = require("./models/listing.js");
 const path=require("path");
 const methodOverride= require("method-override")
-const ejsMate = require ("ejs-mate");
-app.engine('ejs', ejsMate);
+
+const ejsMate = require ("ejs-mate"); // for navbar
+app.engine('ejs', ejsMate); //for navbar
+app.use(express.static(path.join(__dirname,"/public")));
 
 
 const MONGO_URL="mongodb://127.0.0.1:27017/staynest";
@@ -55,7 +57,7 @@ app.get("/",(req,res)=>{
 
  // CREATE ROUTE --> to accept form details 
 app.post("/listings", async (req, res) => {
-    const newListing = new Listing(req.body);
+    const newListing = new Listing(req.body.listing);
 
     await newListing.save();
 
